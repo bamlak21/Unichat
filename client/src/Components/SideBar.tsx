@@ -109,7 +109,7 @@ const Profile = styled.div`
 
 const SideBar = () => {
   // const [open, setOpen] = useState(false);
-  const [users, setUsers] = useState<User[]>(db);
+  const [users] = useState<User[]>(db);
   const [activeUserId, setActiveUserId] = useState<string | null>(null);
 
   console.log(users);

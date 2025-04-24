@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import styled from "styled-components";
 import SideBar from "./Components/SideBar";
@@ -11,7 +10,6 @@ const Container = styled.div`
 `;
 
 function App() {
-  const [count, setCount] = useState(0);
   return (
     <Container>
       <SideBar />

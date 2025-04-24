@@ -245,7 +245,7 @@ const dummyMessages: ChatMessage[] = [
 ];
 
 const Main = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>(dummyMessages);
+  const [messages] = useState<ChatMessage[]>(dummyMessages);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -267,7 +267,7 @@ const Main = () => {
       </TopBar>
 
       <Chat>
-        {messages.map((msg, index) => (
+        {messages.map((msg) => (
           <ChatBubble ref={scrollRef} key={msg.id} $msg={msg}>
             <div>
               <p style={{ margin: 0 }}>{msg.text}</p>
