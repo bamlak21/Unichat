@@ -5,9 +5,10 @@ import db from "../assets/db.json";
 
 interface User {
   id: string;
-  name: string;
-  avatar: string;
-  status: string;
+  email: string;
+  token: string;
+  // avatar: string;
+  // status: string;
 }
 
 const Container = styled.aside`

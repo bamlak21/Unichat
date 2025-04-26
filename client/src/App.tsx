@@ -1,20 +1,32 @@
 import "./App.css";
-import styled from "styled-components";
-import SideBar from "./Components/SideBar";
-import Main from "./Components/Main";
-
-const Container = styled.div`
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-`;
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { useState } from "react";
+import Login from "./Pages/Login";
+import Chat from "./Pages/Chat";
+import Register from "./Pages/Register";
+import { User } from "./types/user";
 
 function App() {
+  const [user, setUser] = useState<User | null>(null);
   return (
-    <Container>
-      <SideBar />
-      <Main />
-    </Container>
+    <Router>
+      <Routes>
+        {!user ? (
+          <>
+            <Route path="/login" element={<Login setUser={setUser} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<Login setUser={setUser} />} />
+          </>
+        ) : (
+          <Route path="/" element={<Chat />} />
+        )}
+      </Routes>
+    </Router>
   );
 }
 

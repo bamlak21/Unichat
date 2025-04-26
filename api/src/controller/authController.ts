@@ -64,7 +64,14 @@ export const Login = async (
 
     const token = generateToken(payload);
 
-    res.status(200).json({ message: "User logged in", token: token });
+    res
+      .status(200)
+      .json({
+        message: "User logged in",
+        token: token,
+        id: user._id,
+        email: user.email,
+      });
     return;
   } catch (err: any) {
     console.error(err.message);
