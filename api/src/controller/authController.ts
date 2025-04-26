@@ -17,6 +17,7 @@ export const Register = async (req: Request, res: Response): Promise<void> => {
       res.status(400).json({ message: "user already exists" });
       return;
     }
+    console.log(userExists);
 
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log(hashedPassword);
