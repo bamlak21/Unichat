@@ -15,6 +15,10 @@ interface JWT {
   secretKey: string;
 }
 
+interface EMAIL {
+  token: string;
+}
+
 const envConfig: EnvConfig = {
   port: Number(process.env.PORT) || 3000,
   nodeEnv: process.env.NODE_ENV || "development",
@@ -28,4 +32,12 @@ const jwtConfig: JWT = {
   secretKey: process.env.JWT_SECRET_KEY || "default_secret_key",
 };
 
-export default { envConfig, dbConfig, jwtConfig };
+const mailtrap: EMAIL = {
+  token:
+    process.env.TOKEN ??
+    (() => {
+      throw new Error("Token not found");
+    })(),
+};
+
+export default { envConfig, dbConfig, jwtConfig, mailtrap };

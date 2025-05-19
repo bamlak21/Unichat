@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-export const userSchema = new Schema(
+export const userRegReqSchema = new Schema(
   {
     email: {
       type: String,
@@ -10,10 +10,12 @@ export const userSchema = new Schema(
       lowercase: true,
     },
     password: { type: String, required: true },
+    otp: { type: Number, required: true },
+    token: { type: String, required: true },
   },
   {
     timestamps: true,
   }
 );
 
-export const User = mongoose.model("User", userSchema) || mongoose.models.user;
+export const UserRegReq = mongoose.model("UserRegReq", userRegReqSchema);

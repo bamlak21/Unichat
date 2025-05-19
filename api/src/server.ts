@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import config from "./config/config";
 import mongoose from "mongoose";
-import { MongoClientOptions } from "mongodb";
 import authRoutes from "./routes/authRoutes";
 
 const { envConfig, dbConfig } = config;
