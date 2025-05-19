@@ -2,9 +2,9 @@
 
 import type React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ArrowRight, Github, Twitter } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import axios from "axios";
 import baseUrl from "../services/request";
 import { User } from "../types/user";
@@ -20,7 +20,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f9fafb;
+  background-color: #101929;
+  color: white;
   padding: 1rem;
 `;
 
@@ -28,6 +29,8 @@ const Card = styled.div`
   width: 100%;
   max-width: 28rem;
   background-color: white;
+  background-color: #030e1f;
+  color: white;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -44,7 +47,7 @@ const Subtitle = styled.h1`
   margin-top: 0.5rem;
   font-size: 1.875rem;
   font-weight: 700;
-  color: #000000;
+  color: white;
   letter-spacing: -0.025em;
 `;
 
@@ -70,7 +73,7 @@ const LabelWrapper = styled.div`
 const Label = styled.label`
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: white;
 `;
 
 const ForgotPasswordLink = styled(Link)`
@@ -118,7 +121,8 @@ const StyledCheckbox = styled.input`
 const CheckboxLabel = styled.label`
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: white;
+
   cursor: pointer;
 `;
 
@@ -147,66 +151,14 @@ const Button = styled.button`
   }
 `;
 
-const Divider = styled.div`
-  position: relative;
-  margin: 1.5rem 0;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: #e5e7eb;
-  }
-`;
-
-const DividerText = styled.span`
-  position: relative;
-  display: inline-block;
-  padding: 0 0.5rem;
-  background-color: white;
-  color: #6b7280;
-  font-size: 0.875rem;
-`;
-
-const SocialButtonsContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-`;
-
-const SocialButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.625rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  background-color: white;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #f9fafb;
-  }
-`;
-
 const Footer = styled.p`
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: white;
 `;
 
-const SignUpLink = styled(Link)`
+const SignUpLink = styled.a`
   font-weight: 500;
   color: #2563eb;
   text-decoration: none;
@@ -220,6 +172,7 @@ const Login = ({ setUser }: LoginProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -291,23 +244,9 @@ const Login = ({ setUser }: LoginProps) => {
           </Button>
         </Form>
 
-        <Divider>
-          <DividerText>Or continue with</DividerText>
-        </Divider>
-
-        <SocialButtonsContainer>
-          <SocialButton type="button">
-            <Github size={16} />
-            Github
-          </SocialButton>
-          <SocialButton type="button">
-            <Twitter size={16} />
-            Twitter
-          </SocialButton>
-        </SocialButtonsContainer>
-
         <Footer>
-          Don't have an account? <SignUpLink href="/signup">Sign up</SignUpLink>
+          Don't have an account?{" "}
+          <SignUpLink onClick={() => navigate("/register")}>Sign up</SignUpLink>
         </Footer>
       </Card>
     </Container>
